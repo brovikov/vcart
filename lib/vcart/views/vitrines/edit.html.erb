@@ -1,0 +1,82 @@
+<% title "Configurar vitrine" %>
+
+
+
+
+
+
+<div class="box5">
+<div class="flash_box">
+<%=render 'shared/flash_messages' %>
+<%=render 'shared/error_messages', :target=> @vitrine %>
+</div>
+
+
+<div class="block margin_top">
+
+
+  <div class="square_box">
+<h1>Configuração <%=link_to @vitrine.user.first_name, vitrine_path(current_vitrine) %> </h1>
+
+
+<div class="subcontent">
+<% unless current_vitrine.user.city.blank? %>
+<%=image_tag "http://maps.google.com/maps/api/staticmap?size=550x150&sensor=false&zoom=16&markers=#{ current_vitrine.address}" %>
+<% end %>
+</div>
+</div>
+
+
+<div class="square_box">
+  <h4>Endereço</h4>
+<div class="subcontent">
+
+<p class="tip">Fique a vontade para atualizar o endereço de sua vitrine</p>
+<%=semantic_form_for(@vitrine, html: { id: 'address_vitrine' }) do |form| %>
+<%=form.inputs do %>
+<%=form.input :address, :label=> "Endereço" %>
+<%=form.input :neighborhood, :label=> "Bairro"%>
+<%=form.input :postal_code, :label=> "CEP"%>
+<%=form.input :address_supplement, :as=> :text, :label => "Complemento" %>
+<%=form.actions do %>
+<%=form.action(:submit, :label=> "Salvar", :button_html => { :class => "btn", id: 'button_address'}) %>
+<% end %>
+<% end %>
+<% end %>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<div class="box11 margin_top">
+  <div class="block">
+  <div class="square_box">
+    <h4>Endereço</h4>
+<div class="content">
+<ul>
+  <li><%=current_vitrine.name %></li>
+<li>
+<%=current_vitrine.address %>
+</li>
+<li>
+<%=current_vitrine.neighborhood %>
+</li>
+<li>
+<%=current_vitrine.postal_code %>
+<li>
+<% unless current_user.city.blank? %>
+<li><%=current_user.city.name %>
+</li>
+<% end %>
+<% unless current_user.state.blank? %>
+<li><%=current_user.state.name %>
+</li>
+<% end %>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
