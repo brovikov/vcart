@@ -1,0 +1,45 @@
+<% title "Adicionar Produto" %>
+<div class="box4">
+
+
+<div class="breadcrumb margin_top">
+<strong>Nome e Descrição</strong>
+&gt; Postar
+</div>
+<div class="flash_box">
+<%=render 'shared/flash_messages' %>
+<%=render 'shared/error_messages', :target=> @product %>
+</div>
+
+
+
+<div class="block margin_top">
+  <%=form_for @product do |p| %>
+<h1>Adicionar Produto</h1>
+<hr class="line"></hr>
+<div class="content">
+
+<div class="subcontent_top">
+<h4>Nome do seu produto</h4>
+<%=p.text_field :name, :label=>"Nome"%>
+</div>
+
+
+<div class="subcontent">
+<h4>Preço e Quantidade</h4>
+<ul>
+  <li>
+    <%=p.label :quantity, 'Quantidade' %>&nbsp;
+<%=p.number_field :quantity, :label=>"Quantidade" %>
+  </li>
+  </br>
+<li>
+  <%=p.label :price, 'Preço' %>&nbsp;
+
+<%=p.text_field :price, :label=>"Preço R$" %>
+</li>
+</ul>
+</div>
+<%= p.submit 'Vender', :class =>"btn btn_big" %>
+  </div>
+</div>

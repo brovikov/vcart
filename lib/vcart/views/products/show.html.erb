@@ -1,0 +1,197 @@
+<% title @product.name%>
+<%description @product.name  %>
+<% keywords  @product.tag_list %>
+<div class="container">
+<div class="box1"
+<% breadcrumb :products, @products %>
+
+  <div class="margin_top">
+    <%= render 'shared/flash_messages' %>
+
+  </div>
+</div>
+
+<!-- Imagens do product   -->
+
+
+<div class="box9">
+
+ 
+
+<div class="box9  white">
+ <%= form_tag  add_to_carts_path(@product),  :method => :post  do |f| %>
+  <div class"content">
+
+
+      <div>
+        <h1 id="item_name"><%= @product.name %></h1>
+      </div>
+
+
+
+
+  
+
+
+      <div>
+<ul>
+    <li>   <%= content_tag(:span, nil, :class =>"sprite-icons-small_vitrine") %>
+        <%=link_to @product.vitrine.name, vitrine_path(@product.vitrine),  :title => "Nome" %>
+      </li>
+ 
+</ul>
+      </div>
+
+
+      <!-- Fim-->
+
+      <!--Descrição   -->
+    <ul>
+    
+
+      <li>
+        <hr class="line"></hr>
+
+        <span>Preço:
+          <strong><%= number_to_currency(@product.price, :unit => "R$") %></strong></span>
+      </li>
+
+
+      <li>
+
+        <span>Disponível:
+          <strong><%= @product.quantity%></strong>
+        </span>
+      </li>
+
+
+
+    
+
+
+
+
+          <span class="span">ID</span>
+          <b class="span">
+            #<%= @product.id %></b>
+        </li>
+        <li>
+       
+        </li>
+
+
+
+
+
+
+
+    </ul>
+
+
+  </div>
+
+  <div class="content">
+    <%= link_to  "https://www.paypal.com/br"  do %>
+
+    <%= content_tag(:span, nil, :class => 'sprite-icons-paypal_protect') %>
+
+    <% end %>
+
+    Saiba mais em:
+    <%= link_to nil, "https://www.paypal.com/br/webapps/mpp/paypal-safety-and-security" %>
+  </div>
+
+</div>
+
+
+<div class="box10">
+
+
+  <div class="block">
+
+    <div class="tip_box wrapper ">
+
+   
+
+   
+
+      <ul>
+        <li>
+
+          <h3 id="item_price"><%= number_to_currency(@product.price, :unit => "R$") %></h3>
+        </li>
+
+      </ul>
+
+      <div class="left_info item_information">
+        <ul>
+          <li >
+            <b>Quantidade</b>&nbsp;
+
+            <%= select_tag  :quantity, options_for_select((1..@product.quantity).collect{ |q| [q, q]}) %>
+
+          </li>
+      
+        </ul>
+
+
+
+      </div>
+
+
+
+
+      <div class="horizontal_buttons">
+        <ul>
+        
+
+            <% if current_user %>
+            <%if @product.buyable?(current_user) %>
+
+        
+
+          
+
+          <li>
+
+            <div class="add_to_car">
+
+              <%= submit_tag("Adicionar a sacola", :class => 'btn btn_big', :'data-submit-form' => true) do %>
+              <%= content_tag(:i, nil, :class=>"add_to_cart_icon")  %>
+              <%end %>
+
+            </div>
+
+            <%end %>
+
+            <%end %>
+
+          </li>
+
+
+       
+
+        </ul>
+
+      </div>
+      <%end %>
+
+   
+
+  </div>
+</div>
+
+    
+
+
+  <!-- Fim-->
+</div>
+
+
+
+
+
+
+
+
+
